@@ -464,9 +464,7 @@ export const StoriesInfoView = styled.View`
 `;
 
 export const CarouselView = styled.View`
-  width: ${Sizes.width - 20}px;
   top: 0px;
-  margin-left: 10px;
   margin-right: 0px;
   bottom: 0px;
   justify-content: center;

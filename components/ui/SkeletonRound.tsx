@@ -1,81 +1,22 @@
 import React from 'react';
-import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
+import SkeletonLoading from "expo-skeleton-loading";
+import { View } from 'react-native';
 
 const SkeletonRound = () => {
+    const items = [1, 2, 3, 4, 5, 6]; 
     return (
-        <SkeletonPlaceholder>
-            <SkeletonPlaceholder.Item
-                flexDirection="row"
-                alignItems="center"
-                marginLeft={24}
-                marginTop={12}>
-                <SkeletonPlaceholder.Item alignItems="center" marginRight={12}>
-                    <SkeletonPlaceholder.Item
-                        width={65}
-                        height={65}
-                        borderRadius={65 / 2}
-                    />
-                    <SkeletonPlaceholder.Item marginTop={12}>
-                        <SkeletonPlaceholder.Item width={60} height={20} borderRadius={4} />
-                    </SkeletonPlaceholder.Item>
-                </SkeletonPlaceholder.Item>
-
-                <SkeletonPlaceholder.Item alignItems="center" marginRight={12}>
-                    <SkeletonPlaceholder.Item
-                        width={65}
-                        height={65}
-                        borderRadius={65 / 2}
-                    />
-                    <SkeletonPlaceholder.Item marginTop={12}>
-                        <SkeletonPlaceholder.Item width={60} height={20} borderRadius={4} />
-                    </SkeletonPlaceholder.Item>
-                </SkeletonPlaceholder.Item>
-
-                <SkeletonPlaceholder.Item alignItems="center" marginRight={12}>
-                    <SkeletonPlaceholder.Item
-                        width={65}
-                        height={65}
-                        borderRadius={65 / 2}
-                    />
-                    <SkeletonPlaceholder.Item marginTop={12}>
-                        <SkeletonPlaceholder.Item width={60} height={20} borderRadius={4} />
-                    </SkeletonPlaceholder.Item>
-                </SkeletonPlaceholder.Item>
-
-                <SkeletonPlaceholder.Item alignItems="center" marginRight={12}>
-                    <SkeletonPlaceholder.Item
-                        width={65}
-                        height={65}
-                        borderRadius={65 / 2}
-                    />
-                    <SkeletonPlaceholder.Item marginTop={12}>
-                        <SkeletonPlaceholder.Item width={60} height={20} borderRadius={4} />
-                    </SkeletonPlaceholder.Item>
-                </SkeletonPlaceholder.Item>
-
-                <SkeletonPlaceholder.Item alignItems="center" marginRight={12}>
-                    <SkeletonPlaceholder.Item
-                        width={65}
-                        height={65}
-                        borderRadius={65 / 2}
-                    />
-                    <SkeletonPlaceholder.Item marginTop={12}>
-                        <SkeletonPlaceholder.Item width={60} height={20} borderRadius={4} />
-                    </SkeletonPlaceholder.Item>
-                </SkeletonPlaceholder.Item>
-
-                <SkeletonPlaceholder.Item alignItems="center" marginRight={12}>
-                    <SkeletonPlaceholder.Item
-                        width={65}
-                        height={65}
-                        borderRadius={65 / 2}
-                    />
-                    <SkeletonPlaceholder.Item marginTop={12}>
-                        <SkeletonPlaceholder.Item width={60} height={20} borderRadius={4} />
-                    </SkeletonPlaceholder.Item>
-                </SkeletonPlaceholder.Item>
-            </SkeletonPlaceholder.Item>
-        </SkeletonPlaceholder>
+        <SkeletonLoading background={"lightgrey"} highlight={"white"}>
+            <View style={{ flexDirection: 'row', alignItems: 'center', marginLeft: 24, marginTop: 12 }}>
+                {items.map((item, index) => (
+                    <View key={index} style={{ alignItems: 'center', marginRight: 12 }}>
+                    <View style={{ width: 65, height: 65, backgroundColor: "#adadad", borderRadius: 65 / 2 }} />
+                    <View style={{ marginTop: 12 }} >
+                        <View style={{ width: 60, height: 20, backgroundColor: "#adadad", borderRadius: 4 / 2 }} />
+                    </View>
+                </View>
+                ))}
+            </View>
+        </SkeletonLoading>
     );
 };
 

@@ -1,68 +1,49 @@
 import React, { useRef, useState } from 'react';
-import { View, Text, StyleSheet, ScrollView, Alert } from 'react-native';
+import { View, Text, StyleSheet, ScrollView, Alert, Button } from 'react-native';
 import { StyledContainer } from '@/constants/Styles';
 import SkeletonRound from '@/components/ui/SkeletonRound';
 import RgStory from 'react-native-rg-story';
-import InstagramStories, { InstagramStoriesPublicMethods } from '@birdwingo/react-native-instagram-stories';
+import InstaStory from 'react-native-insta-story';
 
-const StoriesChannel = () => {
-    // console.log('datax',stories);
-    const ref = useRef(null); // if using typescript - useRef<InstagramStoriesPublicMethods>( null )
-    
-    // const keyMap = {
-    //     name: stories.channel_title,
-    //     imgUrl: stories.thumbnail,
-    //     stories: stories.posts.map((post, index) => ({
-    //         id: `story${index + 1}`,
-    //         source: { uri: post.uri },
-    //         // mediaType: 'video',
-    //     }))
-    // };
-
-    // const transformedData = Object.keys(stories).reduce((acc, key) => ({
-    //     ...acc,
-    //     [keyMap[key] || key]: stories[key],
-    // }), {});
-   const stories = [{
-        id: 'user1',
-        name: 'User 1',
-        imgUrl: 'user1-profile-image-url',
-        stories: [
-            { id: 'story1', source: { uri: 'https://bogorstore.com/agoose/images/thumbnail/202401161603.Putri-Ikan-Emas---Asal-Usul-Danau-Tobapp.png' } },
-            { id: 'story2', source: { uri: 'https://bogorstore.com/agoose/images/thumbnail/202401161603.Putri-Ikan-Emas---Asal-Usul-Danau-Tobapp.png' } },
-        ]
-    }, // ...
-    ];
-    const setStories = () => ref.current?.setStories(stories);
+const StoriesChannel = stories => {
+    const data = stories?.map(item => ({
+        user_id: item.id,
+        user_image: item.thumbnail,
+        user_name: item.channel_title,
+        stories: item.posts?.map(story => ({
+            story_id: story.id,
+            story_image: story.thumbnail,
+            swipeText: story.title
+        })) || []  // Default to empty array if item.posts is null/undefined
+    })) || [];
 
     return (
         <StyledContainer>
             {/* <Text style={{...Fonts.h2, color: Colors.darkBlue, fontWeight: 'bold'}}>
           Penerbit
         </Text> */}
-            <ScrollView
-                horizontal
-                showsVerticalScrollIndicator={false}
-                showsHorizontalScrollIndicator={false}
-                contentContainerStyle={{
-                    flexDirection: 'row',
-                    flexWrap: 'wrap',
-                    // backgroundColor: '#000',
-                    // paddingBottom: 10,
-                    // paddingTop: 10,
-                }}>
-                {stories === null ? (
-                    <SkeletonRound />
-                ) : (
-                        <View>
-                            <InstagramStories
-                                ref={ref}
-                                stories={stories}
-                            />
-                            {/* <Pressable onPress={setStories}>{...}</Pressable> */}
-                        </View>
-                )}
-            </ScrollView>
+            {stories === null ? (
+                <SkeletonRound />
+            ) : (
+                    <InstaStory
+                        data={data}
+                        duration={10}
+                        // renderCloseComponent={({ item, onPress }) => (
+                        //     <View style={{ flexDirection: 'row' }}>
+                        //         {/* <Button onPress={shareStory}>Share</Button> */}
+                        //         <Button title="Click Me" onPress={onPress}></Button>
+                        //     </View>
+                        // )}
+                        //onStart={item => console.log('start :', item)}
+                        //onClose={item => console.log('close: ', item)}
+                        // customSwipeUpComponent={
+                        //   <View>
+                        //     <Text>Swipe up</Text>
+                        //   </View>
+                        // }
+                        style={{ marginTop: 10, marginLeft: 15 }}
+                    />     
+            )}   
         </StyledContainer>
     );
 };

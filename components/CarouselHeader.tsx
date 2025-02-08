@@ -11,24 +11,25 @@ import { Colors } from '@/constants/Colors';
 import { Fonts } from '@/constants/Fonts';
 import { Sizes } from '@/constants/Sizes';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import Carousel, { Pagination } from 'react-native-reanimated-carousel';
+import Carousel, { Pagination, ICarouselInstance } from 'react-native-reanimated-carousel';
 import SkeletonCarousel from '@/components/ui/SkeletonCarousel';
 import { useNavigation } from '@react-navigation/native';
 
-const CarouselHeader = featured => {
+const CarouselHeader = (featured: any) => {
     const [activeIndex, setActivateIndex] = useState(0);
-    const carouselRef = React.createRef();
+    const ref = React.useRef<ICarouselInstance>(null);
     const navigation = useNavigation();
     const colorScheme = useColorScheme();
 
     const _renderItem = ({ item, index }) => {
         return (
             <TouchableOpacity
-                // onPress={() =>
-                //     navigation.navigate('StoriesDetail', {
-                //         stories: item,
-                //     })
-                // }
+                onPress={() =>
+                    // navigation.navigate('StoriesDetail', {
+                    //     stories: item,
+                    // })
+                    console.log('clicked')
+                }
                 style={{
                     backgroundColor: Colors[colorScheme ?? 'light'].softBlue,
                     borderRadius: 20,
@@ -49,35 +50,41 @@ const CarouselHeader = featured => {
         );
     };
 
-    const renderPagination = featured => (
-        <Pagination
-            dotsLength={featured.length}
-            activeDotIndex={activeIndex}
-            dotStyle={{ width: 20, backgroundColor: Colors[colorScheme ?? 'light'].black }}
-            containerStyle={{ right: 10, paddingVertical: 10 }}
-            inactiveDotStyle={{
-                width: 15,
-                height: 15,
-                borderRadius: 15,
-                backgroundColor: Colors[colorScheme ?? 'light'].lightGray3,
-            }}
-        />
-    );
+    // const renderPagination = featured => (
+    //     <Pagination
+    //         dotsLength={featured.length}
+    //         activeDotIndex={activeIndex}
+    //         dotStyle={{ width: 20, backgroundColor: Colors[colorScheme ?? 'light'].black }}
+    //         containerStyle={{ right: 10, paddingVertical: 10 }}
+    //         inactiveDotStyle={{
+    //             width: 15,
+    //             height: 15,
+    //             borderRadius: 15,
+    //             backgroundColor: Colors[colorScheme ?? 'light'].lightGray3,
+    //         }}
+    //     />
+    // );
 
     return (
         <CarouselWrapper>
             {featured === null ? (
                 <SkeletonCarousel />
             ) : (
-                <View>
+                <View >
                     <Carousel
-                        ref={carouselRef}
+                        // ref={ref}
                         data={featured}
-                        sliderWidth={Sizes.width}
-                        itemWidth={Sizes.width}
-                        itemHight={100}
-                        // firstItem={1}
+                        autoPlayInterval={200}
+                        width={Sizes.width}
+                        height={200}
+                        pagingEnabled={true}
+                        snapEnabled={true}
                         loop={true}
+                        mode="parallax"
+                        modeConfig={{
+                            parallaxScrollingScale: 0.9,
+                            parallaxScrollingOffset: 50,
+                        }}
                         renderItem={_renderItem}
                         onSnapToItem={index => setActivateIndex(index)}
                     />

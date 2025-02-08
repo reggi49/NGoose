@@ -14,7 +14,7 @@ SplashScreen.preventAutoHideAsync();
 export default function RootLayout() {
   const colorScheme = useColorScheme();
   const [loaded] = useFonts({
-    JakartaSans: require('../assets/fonts/SpaceMono-Regular.ttf'),
+    JakartaSans: require('../assets/fonts/PlusJakartaSans-VariableFont_wght.ttf'),
   });
 
   useEffect(() => {
