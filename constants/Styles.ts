@@ -246,6 +246,8 @@ export const ButtonView = styled.View`
 export const TabBarView = styled.View`
   align-items: center;
   justify-content: center;
+  width:200%;
+  top: 60%;
 `;
 export const TabBarImage = styled.Image`
   width: 35px;
@@ -479,16 +481,16 @@ export const CarouselWrapper = styled.View`
   margin-top: 10px;
 `;
 
-export const CarouselImage = styled.ImageBackground`
-  resize-mode: contain;
-  width: 100%;
-  height: 100%;
+export const CarouselImage = styled.Image`
+  resize-mode: cover;
+  width: 90%;
+  height: 95%;
   border-radius: 20px;
   overflow: hidden;
 `;
 
 export const CarouselText = styled.Text`
-  color: ${Colors.white}
+  color: ${Colors.white};
   position: absolute;
   font-size: 18px;
   left: 10px;

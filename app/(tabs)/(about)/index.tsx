@@ -15,7 +15,7 @@ return (
     style={styles.reactLogo} />
 }>
 <ThemedView style={styles.titleContainer}>
-    <ThemedText type="title">Welcomex About!</ThemedText>
+    <ThemedText type="title">Welcomex Aboutx!</ThemedText>
     <HelloWave />
 </ThemedView>
 <ThemedView style={styles.stepContainer}>

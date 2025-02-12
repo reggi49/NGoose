@@ -15,12 +15,14 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "@bottom-tabs/react-navigation": "^0.8.6",
     "@expo/vector-icons": "^14.0.2",
     "@react-native-async-storage/async-storage": "1.23.1",
     "@react-native-vector-icons/common": "^11.0.0",
     "@react-native-vector-icons/ionicons": "^7.4.0",
     "@react-navigation/bottom-tabs": "^7.2.0",
     "@react-navigation/native": "^7.0.14",
+    "@react-navigation/stack": "^7.1.1",
     "@shopify/flash-list": "1.7.1",
     "axios": "^1.7.9",
     "expo": "~52.0.25",
@@ -40,6 +42,7 @@
     "react": "18.3.1",
     "react-dom": "18.3.1",
     "react-native": "0.76.6",
+    "react-native-bottom-tabs": "^0.8.6",
     "react-native-gesture-handler": "~2.20.2",
     "react-native-insta-story": "^1.1.9",
     "react-native-reanimated": "~3.16.1",

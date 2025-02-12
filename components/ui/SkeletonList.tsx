@@ -7,7 +7,7 @@ const SkeletonList = () => {
         <SkeletonLoading background={"lightgrey"} highlight={"white"}>
             <View style={{ marginLeft: 5, marginVertical: 8 }}>
                 {items.map((item, index) => (
-                <View style={{ flexDirection: 'row' }}>
+                <View key={index} style={{ flexDirection: 'row' }}>
                     <View style={{ width: 100, height: 150, borderRadius: 10, borderColor: 'red', borderWidth: 1 }} />
                     <View style={{ marginLeft: 12, marginVertical: 8 }}>
                         <View style={{ width: 200, height: 50, borderRadius: 4, backgroundColor: '#ccc' }} />
