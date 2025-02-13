@@ -503,6 +503,17 @@ export const CarouselText = styled.Text`
   `}
 `;
 
+export const PaginationWrapper = styled.View`
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  padding-horizontal: 16px;
+  background-color: #F4F9F9;
+  border-radius: 28px;
+  gap: 12px;
+  bottom: 3%;
+`;
 export const SplashView = styled.SafeAreaView`
   display: flex;
   flex: 1;

@@ -5,6 +5,7 @@ import {
     CarouselImage,
     CarouselText,
     CarouselWrapper,
+    PaginationWrapper
 } from '@/constants/Styles';
 import { Colors } from '@/constants/Colors';
 import { Fonts } from '@/constants/Fonts';
@@ -102,7 +103,7 @@ const CarouselHeader = (featured: any) => {
 
     const Pagination = ({ item, scrollX }: Props) => {
         return (
-            <View style={styles.container}>
+            <PaginationWrapper>
                 {item.map((_: any, index: any) => {
                     const inputRange = [
                         (index - 1) * Sizes.width,
@@ -126,9 +127,14 @@ const CarouselHeader = (featured: any) => {
                         };
                     });
 
-                    return <Animated.View key={index} style={[styles.dot, dotWidth]} />;
+                    return <Animated.View key={index} style={[{
+                        height: 10,
+                        borderRadius: 5,
+                        backgroundColor: '#333',
+                        marginHorizontal: 4,
+                    }, dotWidth]} />;
                 })}
-            </View>
+            </PaginationWrapper>
         );
     };
 
@@ -157,24 +163,3 @@ const CarouselHeader = (featured: any) => {
 };
 
 export default CarouselHeader;
-
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        width: '30%',
-        // paddingVertical: 8,
-        paddingHorizontal: 16,
-        backgroundColor: '#F4F9F9',
-        borderRadius: 28,
-        gap: 12,
-        bottom: '3%'
-    },
-    dot: {
-        height: 10,
-        borderRadius: 5,
-        backgroundColor: '#333',
-        marginHorizontal: 4,
-    },
-});

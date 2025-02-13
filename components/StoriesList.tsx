@@ -258,7 +258,8 @@ const StoriesList = () => {
                     <SkeletonList />
                 ) : (
                     <>
-                        {myStories.map((item) => renderItem(item))}
+                         {/* Add key here */}
+                        {myStories.map((item) => <View key={item.id}>{renderItem(item)}</View>)}
                         {/* Render Footer */}
                         {renderFooter()}
                     </>
