@@ -34,43 +34,16 @@ import { useNavigation } from '@react-navigation/native';
 import Icon from 'react-native-vector-icons/Ionicons';
 import axios from 'axios';
 import { NumberToK } from './helper/NumberToK';
+import SkeletonList from './ui/SkeletonList';
 
 const categoriesData = [
-    {
-        id: 1,
-        name: 'Legenda',
-        is_active: 2,
-    },
-    {
-        id: 2,
-        name: 'Mite',
-        is_active: 2,
-    },
-    {
-        id: 3,
-        name: 'Fabel',
-        is_active: 2,
-    },
-    {
-        id: 4,
-        name: 'Hikayat',
-        is_active: 2,
-    },
-    {
-        id: 5,
-        name: 'Sage',
-        is_active: 2,
-    },
-    {
-        id: 6,
-        name: 'Parabel',
-        is_active: 2,
-    },
-    {
-        id: 7,
-        name: 'Jenaka',
-        is_active: 2,
-    },
+    { id: 1, name: 'Legenda', is_active: 2 },
+    { id: 2, name: 'Mite', is_active: 2 },
+    { id: 3, name: 'Fabel', is_active: 2 },
+    { id: 4, name: 'Hikayat', is_active: 2 },
+    { id: 5, name: 'Sage', is_active: 2 },
+    { id: 6, name: 'Parabel', is_active: 2 },
+    { id: 7, name: 'Jenaka', is_active: 2 },
 ];
 
 const StoriesList = () => {
@@ -172,48 +145,31 @@ const StoriesList = () => {
         );
     };
 
-    const renderFooter = () => {
-        return (
-            //Footer View with Load More button
-            <ViewFooterList>
-                <ButtonFooterList activeOpacity={0.9} onPress={fetchData}>
-                    <Text style={{ color: 'white', fontSize: 15, textAlign: 'center' }}>
-                        Lebih banyak
-                    </Text>
-                    {loading ? (
-                        <ActivityIndicator color="white" style={{ marginLeft: 8 }} />
-                    ) : null}
-                </ButtonFooterList>
-            </ViewFooterList>
-        );
-    };
-
-    const renderItem = ({ item }) => {
+    const renderItem = (item) => {
         return (
             <StoriesListView>
                 <StoriesRowView>
                     <ButtonRowView
-                        onPress={() =>
-                            // navigation.navigate('StoriesDetail', {
-                            //     stories: item,
-                            // })
-                            console.log('clicked')
-                        }>
-                        {/* Book Cover */}
-                        <Image
-                            source={{ uri: item.thumbnail }}
-                            resizeMode="cover"
-                            style={{ width: 100, height: 150, borderRadius: 10 }}
-                        />
+                        // onPress={() =>
+                        //     navigation.navigate('StoriesDetail', {
+                        //         stories: item,
+                        //     })}
+                        >
+                    {/* Book Cover */}
+                    <Image
+                        source={{ uri: item.thumbnail }}
+                        resizeMode="cover"
+                        style={{ width: 100, height: 150, borderRadius: 10 }}
+                    />
                     </ButtonRowView>
+
                     <StoriesInfo>
                         <ButtonRowView
-                            onPress={() =>
-                                // navigation.navigate('StoriesDetail', {
-                                //     stories: item,
-                                // })
-                                console.log('clicked')
-                            }>
+                            // onPress={() =>
+                            //     navigation.navigate('StoriesDetail', {
+                            //         stories: item,
+                            //     })}
+                                >
                             {/* Book name and author */}
                             <View>
                                 <StoriesNameText numberOfLines={2}>
@@ -229,7 +185,7 @@ const StoriesList = () => {
                                 source={require('../assets/icons/heart.png')}
                                 resizeMode="contain"
                             />
-                            <SeoPageText>{NumberToK(Math.floor(item.views / 1.5))}</SeoPageText>
+                            <SeoPageText>{Math.floor(item.views / 1.5)}</SeoPageText>
 
                             <SeoView
                                 source={require('../assets/icons/watch.png')}
@@ -246,7 +202,7 @@ const StoriesList = () => {
 
                         <GenreView>
                             <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                                {item?.categories.map((name, key) => (
+                                {item.categories.map((name, key) => (
                                     <GenreBoxView key={key}>
                                         <SeoGenreText>{name}</SeoGenreText>
                                     </GenreBoxView>
@@ -256,14 +212,22 @@ const StoriesList = () => {
                     </StoriesInfo>
                 </StoriesRowView>
 
-                {/* <BookmarkButton onPress={() => console.log('Bookmark')}>
-          <SeoView
-            bookmark={true}
-            source={require('../assets/icons/bookmark_icon.png')}
-            resizeMode="contain"
-          />
-        </BookmarkButton> */}
             </StoriesListView>
+        );
+    };
+
+    const renderFooter = () => {
+        return (
+            <ViewFooterList>
+                <ButtonFooterList activeOpacity={0.9} onPress={fetchData}>
+                    <Text style={{ color: 'white', fontSize: 15, textAlign: 'center' }}>
+                        Lebih banyak
+                    </Text>
+                    {loading ? (
+                        <ActivityIndicator color="white" style={{ marginLeft: 8 }} />
+                    ) : null}
+                </ButtonFooterList>
+            </ViewFooterList>
         );
     };
 
@@ -291,15 +255,13 @@ const StoriesList = () => {
                     marginBottom: 200,
                 }}>
                 {loading && offset === 1 ? (
-                    <></>
+                    <SkeletonList />
                 ) : (
-                    <FlatList
-                        data={myStories}
-                        renderItem={renderItem}
-                        keyExtractor={item => `${item.id}`}
-                        showsVerticalScrollIndicator={false}
-                        ListFooterComponent={renderFooter}
-                    />
+                    <>
+                        {myStories.map((item) => renderItem(item))}
+                        {/* Render Footer */}
+                        {renderFooter()}
+                    </>
                 )}
             </View>
         </View>

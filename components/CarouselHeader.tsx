@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, TouchableOpacity } from 'react-native';
+import { View, TouchableOpacity, StyleSheet } from 'react-native';
 import {
     CarouselView,
     CarouselImage,
@@ -22,6 +22,7 @@ import Animated, {
 
 type Props = {
     item: {
+        map: any;
         id: string;
         title: string;
         img: any;
@@ -43,7 +44,6 @@ const CarouselHeader = (featured: any) => {
     const CarouselItem = ({ item, index, scrollX }: Props) => {
         const carouselStyle = useAnimatedStyle(() => {
             return {
-                //get the previous and next item on the view of the active item, only a little bit
                 transform: [
                     {
                         translateX: interpolate(
@@ -100,27 +100,81 @@ const CarouselHeader = (featured: any) => {
         );
     };
 
+    const Pagination = ({ item, scrollX }: Props) => {
+        return (
+            <View style={styles.container}>
+                {item.map((_: any, index: any) => {
+                    const inputRange = [
+                        (index - 1) * Sizes.width,
+                        index * Sizes.width,
+                        (index + 1) * Sizes.width,
+                    ];
+
+                    const dotWidth = useAnimatedStyle(() => {
+                        const scale = interpolate(
+                            scrollX.value,
+                            inputRange,
+                            [8, 16, 8],
+                            'clamp'
+                        );
+                        return {
+                            width: scale,
+                            height: 8,
+                            borderRadius: 4,
+                            backgroundColor: '#333',
+                            marginHorizontal: 4,
+                        };
+                    });
+
+                    return <Animated.View key={index} style={[styles.dot, dotWidth]} />;
+                })}
+            </View>
+        );
+    };
+
     return (
         <CarouselWrapper>
             {featured === null ? (
                 <SkeletonCarousel />
             ) : (
-                <View>
+                    <>
                     <Animated.FlatList
                         horizontal
                         onScroll={onScrollHandler}
                         data={featured}
                         keyExtractor={(item) => item.id}
                         pagingEnabled={true}
+                        showsHorizontalScrollIndicator={false}
                         renderItem={({ item, index }) => {
                             return <CarouselItem item={item} index={index} scrollX={scrollX} />;
                         }}
                     />
-                    {/* {renderPagination(featured)} */}
-                </View>
+                        <Pagination item={featured} scrollX={scrollX} index={0} />
+                </>
             )}
         </CarouselWrapper>
     );
 };
 
 export default CarouselHeader;
+
+const styles = StyleSheet.create({
+    container: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        alignItems: 'center',
+        width: '30%',
+        // paddingVertical: 8,
+        paddingHorizontal: 16,
+        backgroundColor: '#F4F9F9',
+        borderRadius: 28,
+        gap: 12,
+        bottom: '3%'
+    },
+    dot: {
+        height: 10,
+        borderRadius: 5,
+        backgroundColor: '#333',
+        marginHorizontal: 4,
+    },
+});

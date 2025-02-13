@@ -19,7 +19,7 @@ export const LoginView = styled.View`
   flex: 1.5;
   margin-bottom: 50px;
   bottom: 50px;
-  background-color: ${Colors.white};
+  background-color: ${Colors.light.white};
   justify-content: center;
   align-items: center;
   border-top-start-radius: 45px;
@@ -33,7 +33,7 @@ export const LoginView = styled.View`
 export const SignupView = styled.View`
   flex: 1;
   bottom: 35px;
-  background-color: ${Colors.white};
+  background-color: ${Colors.light.white};
   justify-content: center;
   align-items: center;
   border-top-start-radius: 45px;
@@ -43,7 +43,7 @@ export const SignupView = styled.View`
 
 export const ThankView = styled.View`
   flex: 1.5;
-  background-color: ${Colors.white};
+  background-color: ${Colors.light.white};
   justify-content: center;
   align-items: center;
   top: -20px;
@@ -58,7 +58,7 @@ export const PageLogo = styled.Image`
 `;
 
 export const PageTitle = styled.Text`
-  color: ${Colors.primary}
+  color: ${Colors.light.primary}
   font-size: 30px;
   text-align: center;
   font-weight: bold;
@@ -79,17 +79,17 @@ export const SubTitle = styled.Text`
 `;
 
 export const StyledTextInput = styled.TextInput`
-  background-color: ${Colors.white};
+  background-color: ${Colors.light.white};
   margin-top: 10px;
   padding: 15px;
   padding-left: 55px;
   padding-right: 55px;
   border-radius: 5px;
   border-width: 1px;
-  border-color:${Colors.lightGray}
+  border-color:${Colors.light.lightGray}
   font-size: 16px;
   height: 50px;
-  color: ${Colors.black};
+  color: ${Colors.light.black};
 `;
 
 export const StyledInputLabel = styled.Text`
@@ -124,17 +124,17 @@ export const StyledButton = styled.TouchableOpacity`
   height: 50px;
   ${props =>
     props.login === true &&
-    `background-color: ${Colors.primary}
+    `background-color: ${Colors.light.primary}
   `};
   ${props =>
     props.logout === true &&
-    `background-color: ${Colors.softRed}
+    `background-color: ${Colors.light.softRed}
      flex: 1;
      margin-right: 8px;
   `};
   ${props =>
     props.delete === true &&
-    `background-color: ${Colors.lightGray4}
+    `background-color: ${Colors.light.lightGray4}
      flex: 1;
   `};
 `;
@@ -147,15 +147,15 @@ export const EditButton = styled.TouchableOpacity`
   align-items: center;
   border-radius: 5px;
   height: 30px;
-  background-color: ${Colors.primary};
+  background-color: ${Colors.light.primary};
   ${props =>
     props.showProfile === true &&
-    `background-color: ${Colors.lightGreen}
+    `background-color: ${Colors.light.lightGreen}
   `};
 `;
 
 export const EditText = styled.Text`
-  color: ${Colors.secondary};
+  color: ${Colors.light.secondary};
   font-size: 15px;
 `;
 
@@ -172,12 +172,12 @@ export const SocialButtonView = styled.TouchableOpacity`
 `;
 
 export const ButtonText = styled.Text`
-  color: ${Colors.secondary};
+  color: ${Colors.light.secondary};
   font-size: 16px;
   ${props =>
     props.google === true &&
     `
-    color: ${Colors.secondary};
+    color: ${Colors.light.secondary};
     padding: 25px;
   `}
 `;
@@ -202,7 +202,7 @@ export const ExtraView = styled.View`
 `;
 
 export const ExtraText = styled.Text`
-  color: ${Colors.lightGray}
+  color: ${Colors.light.lightGray}
   justify-content: center;
   align-content: center;
   font-size: 15px;
@@ -215,7 +215,7 @@ export const TextLink = styled.TouchableOpacity`
 `;
 
 export const TextLinkContent = styled.Text`
-  color: ${Colors.primary};
+  color: ${Colors.light.primary};
   font-size: 18px;
   text-align: center;
 `;
@@ -252,11 +252,11 @@ export const TabBarView = styled.View`
 export const TabBarImage = styled.Image`
   width: 35px;
   height: 35px;
-  tint-color: ${Colors.lightGray3};
+  tint-color: ${Colors.light.lightGray3};
   ${props =>
     props.focused === true &&
     `
-    tintColor: ${Colors.primary};
+    tintColor: ${Colors.light.primary};
   `}
 `;
 export const TabBarText = styled.Text`
@@ -265,17 +265,17 @@ export const TabBarText = styled.Text`
   ${props =>
     props.focused === true &&
     `
-    color: ${Colors.primary};
+    color: ${Colors.light.primary};
   `}
 `;
 export const DividerView = styled.View`
   flex: 1;
-  border-left-color: ${Colors.lightGray};
+  border-left-color: ${Colors.light.lightGray};
   border-left-width: 1px;
 `;
 
 export const HeaderView = styled.View`
-  background-color: ${Colors.softBlue};
+  background-color: ${Colors.light.softBlue};
   flex: 1;
   flex-direction: row;
   padding-horizontal: ${Sizes.padding}px;
@@ -290,7 +290,7 @@ export const HeaderSearch = styled.TouchableOpacity`
 
 export const SerchTextInput = styled.TextInput`
   border-width: 1px;
-  border-color: ${Colors.lightBlue};
+  border-color: ${Colors.light.lightBlue};
   border-radius: 25px;
   height: 40px;
   font-size: 13px;
@@ -326,11 +326,11 @@ export const StoriesInfo = styled.View`
 export const StoriesNameText = styled.Text`
   padding-right: ${Sizes.padding}px;
   ${Fonts.h3};
-  color: ${Colors.darkBlue};
+  color: ${Colors.light.darkBlue};
 `;
 export const StoriesAuthorText = styled.Text`
   ${Fonts.body3};
-  color: ${Colors.lightBlue};
+  color: ${Colors.light.lightBlue};
 `;
 
 export const StoriesSeo = styled.View`
@@ -341,19 +341,19 @@ export const StoriesSeo = styled.View`
 export const SeoView = styled.Image`
   width: 20px;
   height: 20px;
-  tint-color: ${Colors.lightBlue};
+  tint-color: ${Colors.light.lightBlue};
   ${props =>
     props.bookmark === true &&
     `
     width: 25px;
     height: 25px;
-    tint-color: ${Colors.softRed};
+    tint-color: ${Colors.light.softRed};
   `}
 `;
 
 export const SeoPageText = styled.Text`
   ${Fonts.body4};
-  color: ${Colors.lightBlue};
+  color: ${Colors.light.lightBlue};
   padding-horizontal: 8px;
 `;
 
@@ -370,12 +370,12 @@ export const GenreBoxView = styled.View`
   height: 33px;
   border-radius: 12px;
   border-width: 1px;
-  border-color: ${Colors.primary};
+  border-color: ${Colors.light.primary};
 `;
 
 export const SeoGenreText = styled.Text`
   ${Fonts.body4};
-  color: ${props => props.inputColor || Colors.primary};
+  color: ${props => props.inputColor || Colors.light.primary};
 `;
 
 export const BookmarkButton = styled.TouchableOpacity`
@@ -475,7 +475,6 @@ export const CarouselView = styled.View`
 
 export const CarouselWrapper = styled.View`
   position: relative;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
   margin-top: 10px;
@@ -490,7 +489,7 @@ export const CarouselImage = styled.Image`
 `;
 
 export const CarouselText = styled.Text`
-  color: ${Colors.white};
+  color: ${Colors.light.white};
   position: absolute;
   font-size: 18px;
   left: 10px;
@@ -507,7 +506,7 @@ export const CarouselText = styled.Text`
 export const SplashView = styled.SafeAreaView`
   display: flex;
   flex: 1;
-  background-color: ${Colors.primary};
+  background-color: ${Colors.light.primary};
 `;
 
 export const ContentContainer = styled.View`
@@ -534,7 +533,7 @@ export const StoriesCoverList = styled.Image`
   overflow: hidden;
   width: ${Sizes.width / 3.2}px;
   height: 200px;
-  background-color: ${Colors.primary};
+  background-color: ${Colors.light.primary};
 `;
 
 export const ChannelsList = styled.Image`
@@ -547,7 +546,7 @@ export const ChannelsList = styled.Image`
   width: ${Sizes.width / 2.3}px;
   height: auto;
   aspect-ratio: 1;
-  background-color: ${Colors.primary};
+  background-color: ${Colors.light.primary};
 `;
 
 export const StoriesDetailView = styled.View`
@@ -564,7 +563,7 @@ export const StoriesDetailWrapper = styled.View`
 
 export const StoriesDetailMore = styled.Text`
   ${Fonts.h3};
-  color: ${Colors.lightBlue};
+  color: ${Colors.light.lightBlue};
   align-self: flex-start;
   margin-top: 2px;
   margin-right: 5px;
@@ -573,7 +572,7 @@ export const StoriesDetailMore = styled.Text`
 export const StoriesDetailImage = styled.Image`
   width: 20px;
   height: 20px;
-  tint-color: ${Colors.lightBlue};
+  tint-color: ${Colors.light.lightBlue};
   ${props =>
     props.page === true &&
     `
@@ -584,14 +583,14 @@ export const StoriesDetailImage = styled.Image`
 export const StoriesDetailText = styled.Text`
   margin-left: 5px;
   ${Fonts.body3};
-  color: ${Colors.lightBlue};
+  color: ${Colors.light.lightBlue};
 `;
 
 export const ChannelDetailText = styled.Text`
   margin-left: 15px;
   margin-bottom: 15px;
   ${Fonts.h3};
-  color: ${Colors.lightBlue};
+  color: ${Colors.light.lightBlue};
 `;
 
 export const ViewFooterList = styled.View`
@@ -603,7 +602,7 @@ export const ViewFooterList = styled.View`
 
 export const ButtonFooterList = styled.TouchableOpacity`
   padding: 10px;
-  background-color: ${Colors.primary};
+  background-color: ${Colors.light.primary};
   border-radius: 4px;
   flex-direction: row;
   justify-content: center;
@@ -611,7 +610,7 @@ export const ButtonFooterList = styled.TouchableOpacity`
 `;
 
 export const TextProfile = styled.Text`
-  color: ${Colors.primary};
+  color: ${Colors.light.primary};
   font-size: 20px;
   font-weight: bold;
   text-align: center;
