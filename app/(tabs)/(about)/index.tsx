@@ -1,73 +1,155 @@
-import { Image, StyleSheet, Platform } from 'react-native';
+import React, { useState, useContext, useEffect } from 'react';
+import {
+    StyledContainer,
+    StyledButton,
+    ChannelsList,
+    LoginBackground,
+    ThankView,
+    ChannelDetailText,
+} from '@/constants/Styles';
+import { Colors } from '@/constants/Colors';
+import { Fonts } from '@/constants/Fonts';
+import { Sizes } from '@/constants/Sizes';
+import {
+    StyleSheet,
+    View,
+    ActivityIndicator,
+    SafeAreaView,
+    Text,
+    TouchableOpacity,
+    FlatList,
+    Linking,
+} from 'react-native';
+// const { darkLight, primary } = Colors;
+import KeyboardWrapper from '@/components/ui/KeyboardWrapper';
+import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+// import { CredentialsContext } from './../components/CredentialsContext';
+import { useNavigation } from '@react-navigation/native';
 
-import { HelloWave } from '@/components/HelloWave';
-import ParallaxScrollView from '@/components/ParallaxScrollView';
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+type Props = {
+    item: {
+        map: any;
+        channel_id: string;
+        channel_title: string;
+        thumbnail: string;
+    };
+    index: number;
+};
+const Thanks = () => {
+    const navigation = useNavigation();
+    const [channels, setChannels] = useState([]);
+    const [loading, setLoading] = useState(false);
 
-export default function AboutScreen() {
-return (
-<ParallaxScrollView
-    headerBackgroundColor={{ light: '#A1CEDC', dark: '#1D3D47' }}
-    headerImage={
-    <Image
-    source={require('@/assets/images/partial-react-logo.png')}
-    style={styles.reactLogo} />
-}>
-<ThemedView style={styles.titleContainer}>
-    <ThemedText type="title">Welcomex Aboutx!</ThemedText>
-    <HelloWave />
-</ThemedView>
-<ThemedView style={styles.stepContainer}>
-    <ThemedText type="subtitle">Step 1: Try it</ThemedText>
-    <ThemedText>
-        Edit <ThemedText type="defaultSemiBold">app/(tabs)/index.tsx</ThemedText> to see changes.
-        Press{' '}
-        <ThemedText type="defaultSemiBold">
-            {Platform.select({
-            ios: 'cmd + d',
-            android: 'cmd + m',
-            web: 'F12'
-            })}
-        </ThemedText>{' '}
-        to open developer tools.
-    </ThemedText>
-</ThemedView>
-<ThemedView style={styles.stepContainer}>
-    <ThemedText type="subtitle">Step 2: Explore</ThemedText>
-    <ThemedText>
-        Tap the Explore tab to learn more about what's included in this starter app.
-    </ThemedText>
-</ThemedView>
-<ThemedView style={styles.stepContainer}>
-    <ThemedText type="subtitle">Step 3: Get a fresh start</ThemedText>
-    <ThemedText>
-        When you're ready, run{' '}
-        <ThemedText type="defaultSemiBold">npm run reset-project</ThemedText> to get a fresh{' '}
-        <ThemedText type="defaultSemiBold">app</ThemedText> directory. This will move the current{' '}
-        <ThemedText type="defaultSemiBold">app</ThemedText> to{' '}
-        <ThemedText type="defaultSemiBold">app-example</ThemedText>.
-    </ThemedText>
-</ThemedView>
-</ParallaxScrollView>
-);
-}
+    // const { storedCredentials, setStoredCredentials } =
+    //     useContext(CredentialsContext);
 
-const styles = StyleSheet.create({
-titleContainer: {
-flexDirection: 'row',
-alignItems: 'center',
-gap: 8,
-},
-stepContainer: {
-gap: 8,
-marginBottom: 8,
-},
-reactLogo: {
-height: 178,
-width: 290,
-bottom: 0,
-left: 0,
-position: 'absolute',
-},
-});
+    useEffect(() => {
+        fetchChannels();
+    }, []);
+
+    const fetchChannels = () => {
+        if (!loading) {
+            setLoading(true);
+            axios
+                .get('https://bogorstore.com/agoose/api/posts/listchannels')
+                .then(res => {
+                    if (res.data.length > 0) {
+                        // console.log(res.data);
+                        setChannels(res.data);
+                        setLoading(false);
+                    } else {
+                        setLoading(false);
+                    }
+                })
+                .catch(error => {
+                    console.log('error:', error);
+                });
+        }
+    };
+    const renderItem = ({ item, index } : Props) => {
+        return (
+            <TouchableOpacity
+                style={{
+                    flex: 1,
+                }}
+                onPress={() =>
+                    Linking.openURL('https://www.youtube.com/channel/' + item.channel_id)
+                }>
+                {/* Channels Cover */}
+                <ChannelsList
+                    style={{
+                        shadowColor: '#000',
+                        shadowOffset: {
+                            width: 0,
+                            height: 2,
+                        },
+                        shadowOpacity: 0.25,
+                        shadowRadius: 3.84,
+                    }}
+                    source={{
+                        uri: item.thumbnail,
+                    }}
+                    resizeMode="cover"
+                />
+                <ChannelDetailText>{item.channel_title}</ChannelDetailText>
+            </TouchableOpacity>
+        );
+    };
+
+    return (
+        <KeyboardWrapper>
+            <SafeAreaView style={{ backgroundColor: 'white' }}>
+                <StyledContainer>
+                    <LoginBackground
+                        resizeMode="cover"
+                        source={require('@/assets/img/special-thanks-children.jpg')}
+                    />
+                    <ThankView>
+                        <View
+                            style={{
+                                paddingLeft: 20,
+                                paddingRight: 20,
+                            }}>
+                            <Text
+                                style={{
+                                    ...Fonts.h1,
+                                    color: Colors.light.darkBlue,
+                                    fontWeight: 'bold',
+                                    textAlign: 'center',
+                                    paddingBottom: 10,
+                                }}>
+                                Special Thank You
+                            </Text>
+                            <Text
+                                style={{
+                                    ...Fonts.h3,
+                                    color: Colors.light.darkBlue,
+                                    textAlign: 'justify',
+                                }}>
+                                Application is dedicated to my daughter 2nd birthday.
+                                Application is free and will always be free. If you have any
+                                questions please contact me at email reggimuhamad@yahoo.com.
+                            </Text>
+                        </View>
+                    </ThankView>
+                    <View style={{marginLeft: 10,marginRight: 13,marginBottom: 100}}>
+                        {loading ? (
+                            <ActivityIndicator color={Colors.light.primary} style={{ margin: 15 }} />
+                        ) : null}
+                        <FlatList
+                            numColumns={2}
+                            data={channels}
+                            renderItem={renderItem}
+                            keyExtractor={item => `key-${item.channel_title}`}
+                            onEndReached={fetchChannels}
+                            onEndReachedThreshold={0.5}
+                        />
+                    </View>
+                </StyledContainer>
+            </SafeAreaView>
+        </KeyboardWrapper>
+    );
+};
+
+export default Thanks;

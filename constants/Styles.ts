@@ -58,7 +58,7 @@ export const PageLogo = styled.Image`
 `;
 
 export const PageTitle = styled.Text`
-  color: ${Colors.light.primary}
+  color: ${Colors.light.primary};
   font-size: 30px;
   text-align: center;
   font-weight: bold;
@@ -86,7 +86,7 @@ export const StyledTextInput = styled.TextInput`
   padding-right: 55px;
   border-radius: 5px;
   border-width: 1px;
-  border-color:${Colors.light.lightGray}
+  border-color:${Colors.light.lightGray};
   font-size: 16px;
   height: 50px;
   color: ${Colors.light.black};
@@ -124,17 +124,17 @@ export const StyledButton = styled.TouchableOpacity`
   height: 50px;
   ${props =>
     props.login === true &&
-    `background-color: ${Colors.light.primary}
+    `background-color: ${Colors.light.primary};
   `};
   ${props =>
     props.logout === true &&
-    `background-color: ${Colors.light.softRed}
+    `background-color: ${Colors.light.softRed};
      flex: 1;
      margin-right: 8px;
   `};
   ${props =>
     props.delete === true &&
-    `background-color: ${Colors.light.lightGray4}
+    `background-color: ${Colors.light.lightGray4};
      flex: 1;
   `};
 `;
@@ -150,7 +150,7 @@ export const EditButton = styled.TouchableOpacity`
   background-color: ${Colors.light.primary};
   ${props =>
     props.showProfile === true &&
-    `background-color: ${Colors.light.lightGreen}
+    `background-color: ${Colors.light.lightGreen};
   `};
 `;
 
@@ -202,7 +202,7 @@ export const ExtraView = styled.View`
 `;
 
 export const ExtraText = styled.Text`
-  color: ${Colors.light.lightGray}
+  color: ${Colors.light.lightGray};
   justify-content: center;
   align-content: center;
   font-size: 15px;
